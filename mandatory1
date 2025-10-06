@@ -1,0 +1,121 @@
+import json
+import csv
+from pathlib import Path
+
+my_path = Path.cwd().joinpath("incident.json")
+# ____________________________________________________________________________
+
+# 🔹 Step 1 – Load JSON and print alerts
+
+with open(my_path, "r") as f:
+    data = json.load(f)
+    alerts = data["alerts"]
+    # print(alerts)
+
+# 🔹 Step 2 – Print only IDs of alerts
+
+# for alert in alerts:
+    # print(alert["alertId"])
+
+# 🔹 Step 3 – Print one field (domains) for each alert
+
+# for alert in alerts:
+#     alert_id = alert["alertId"]
+#     domains = alert["entities"]["domains"]
+#     print(alert_id, domains)
+
+# 🔹 Step 4 – Flatten the list into rows
+
+
+# for alert in alerts:
+#     alert_id = alert["alertId"]
+#     machine_id = alert["machineId"]
+#     first_activity = alert["firstActivity"]
+        
+#     for domain in alert["entities"]["domains"]:
+#         print(alert_id, machine_id, first_activity, domain)
+
+
+# 🔹 Step 5 – Write it into a CSV
+
+# with open("alert_domain.csv", "w", newline= "") as filea:
+#     writer = csv.writer(filea, quoting=csv.QUOTE_ALL)
+#     writer.writerow(["alertId", "machineId", "firstActivity", "domains"])
+#     for alert in alerts:
+#         alert_id = alert["alertId"]
+#         machine_id = alert["machineId"]
+#         first_activity = alert["firstActivity"]
+        
+#         for domain in alert["entities"]["domains"]:
+#             writer.writerow([alert_id, machine_id, first_activity, domain])
+
+
+# # 🔹 Step 6 – Expand to other fields
+
+# with open("alert_fileHashes.csv", "w", newline= "") as fileb:
+#     writer = csv.writer(fileb)
+#     writer.writerow(["alertId", "machineId", "firstActivity", "fileHashes"])
+#     for alert in alerts:
+#         alert_id = alert["alertId"]
+#         machine_id = alert["machineId"]
+#         first_activity = alert["firstActivity"]
+        
+#         for hashes in alert["entities"]["fileHashes"]:
+#             writer.writerow([alert_id, machine_id, first_activity, hashes])
+
+
+
+# with open("alert_ips.csv", "w", newline= "") as filec:
+#     writer = csv.writer(filec)
+#     writer.writerow(["alertId", "machineId", "firstActivity", "ips"])
+#     for alert in alerts:
+#         alert_id = alert["alertId"]
+#         machine_id = alert["machineId"]
+#         first_activity = alert["firstActivity"]
+        
+#         for ips in alert["entities"]["ips"]:
+#             writer.writerow([alert_id, machine_id, first_activity, ips])
+
+
+# with open("alert_processes.csv", "w", newline= "") as filed:
+#     writer = csv.writer(filed)
+#     writer.writerow(["alertId", "machineId", "firstActivity", "processes"])
+#     for alert in alerts:
+#         alert_id = alert["alertId"]
+#         machine_id = alert["machineId"]
+#         first_activity = alert["firstActivity"]
+        
+#         for processes in alert["entities"]["processes"]:
+#             writer.writerow([alert_id, machine_id, first_activity, processes])
+
+
+# ________________________________________________________________________________________________________
+
+# DET HELE I ET FOR LOOP
+
+
+# csv_files = {
+#     "domains" : "alert_domain.csv",
+#     "fileHashes" : "alert_fileHashes.csv",
+#     "ips" : "alert_ips.csv",
+#     "processes" : "alert_processes.csv"
+# }
+# for fields in csv_files:
+#     filename = csv_files[fields]
+#     row = []
+
+#     for alert in alerts:
+#         alert_id = alert["alertId"]
+#         machine_id = alert["machineId"]
+#         first_activity = alert["firstActivity"]
+#         values = alert["entities"][fields]
+         
+#         for val in values:
+#             row.append([alert_id, machine_id, first_activity, val])
+
+#     with open(filename, "w", newline= "") as f:
+#         writer = csv.writer(f)
+#         header = ["alertId", "machineId", "firstActivity", fields]
+#         writer.writerow(header)
+#         for rows in row:
+#             writer.writerow(rows)
